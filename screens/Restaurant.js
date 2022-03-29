@@ -60,6 +60,16 @@ const Restaurant = ({route, navigation}) => {
     return 0;
   }
 
+  function getBasketItemCount() {
+    let itemCount = orderItems.reduce((a, b) => a + (b.qty || 0), 0);
+    return itemCount;
+  }
+
+  function sumOrder() {
+    let total = orderItems.reduce((a, b) => a + (b.total || 0), 0);
+    return total.toFixed(2);
+  }
+
   function renderHeader() {
     return (
       <View style={{flexDirection: 'row'}}>
@@ -289,8 +299,10 @@ const Restaurant = ({route, navigation}) => {
               borderBottomColor: COLORS.lightGray2,
               borderBottomWidth: 1,
             }}>
-            <Text style={{...FONTS.h3}}>Items in Cart</Text>
-            <Text style={{...FONTS.h3}}>$45</Text>
+            <Text style={{...FONTS.h3}}>
+              {getBasketItemCount()} Items in Cart
+            </Text>
+            <Text style={{...FONTS.h3}}>${sumOrder()}</Text>
           </View>
           <View
             style={{
@@ -333,7 +345,13 @@ const Restaurant = ({route, navigation}) => {
                 backgroundColor: COLORS.primary,
                 alignItems: 'center',
                 borderRadius: SIZES.radius,
-              }}>
+              }}
+              onPress={() =>
+                navigation.navigate('OrderDelivery', {
+                  restaurant: restaurant,
+                  currentLocation: currentLocation,
+                })
+              }>
               <Text style={{color: COLORS.white, ...FONTS.h2}}>Order</Text>
             </TouchableOpacity>
           </View>

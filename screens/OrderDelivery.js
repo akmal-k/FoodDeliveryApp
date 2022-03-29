@@ -3,7 +3,7 @@ import React from 'react';
 
 const OrderDelivery = () => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Text>OrderDelivery</Text>
     </View>
   );
