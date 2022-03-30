@@ -125,12 +125,29 @@ const OrderDelivery = ({route, navigation}) => {
     );
 
     return (
-      <View style={{flex: 1}}>
+      <View
+        style={{
+          flex: 1,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+        }}>
         <MapView
           ref={mapView}
           provider={PROVIDER_GOOGLE}
           initialRegion={region}
-          style={{flex: 1}}>
+          style={{
+            flex: 1,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}>
           <MapViewDirections
             origin={fromLocation}
             destination={toLocation}
